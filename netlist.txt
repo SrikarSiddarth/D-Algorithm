@@ -1,0 +1,25 @@
+# 3 inputs
+# 1 outputs
+# 8 gates (4 ANDs + 3 NOTs + 1 OR)
+# Y = ABC + A'B'C'
+# assuming all gates have single output
+INPUT A
+INPUT B
+INPUT C
+
+OUTPUT Y
+a1 = fanout A
+b1 = fanout B
+c1 = fanout C
+w1 w4 = fanout a1
+w2 w5 = fanout b1
+w3 w6 = fanout c1
+n1 = AND w1 w2
+n2 = AND n1 w3
+n3 = NOT w4
+n4 = NOT w5
+n5 = NOT w6
+n6 = AND n4 n5
+n7 = AND n6 n3
+y1 = OR n2 n7
+Y = fanout y1

@@ -1,0 +1,32 @@
+# Y = S1’( S0’A0 + S0 A1 ) + S1( S0’A2 + S0 A3 )
+INPUT A0
+INPUT A1
+INPUT A2
+INPUT A3
+INPUT S0
+INPUT S1
+
+OUTPUT Y
+S0w = fanout S0
+S1w = fanout S1
+A0w = fanout A0
+A1w = fanout A1
+A2w = fanout A2
+A3w = fanout A3
+S0a S0b S0c S0d = fanout S0w
+S1a S1b S1c = fanout S1w
+G10 = NAND S0a S0b
+G10a G10b = fanout G10
+G1 = AND A0w G10a
+G2 = AND A1w S0c
+G3 = OR G1 G2
+G4 = AND A2w G10b
+G5 = AND A3w S0d
+G6 = OR G4 G5
+G11 = NOR S1a S1b
+G7 = AND G3 G11
+G8 = AND G6 S1c
+G9 = OR G7 G8
+
+
+Y = fanout G9

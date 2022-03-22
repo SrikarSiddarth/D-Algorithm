@@ -1,0 +1,11 @@
+# and gate
+
+INPUT a
+INPUT b
+
+OUTPUT y
+
+a1 = fanout a
+b1 = fanout b
+y1 = AND a1 b1
+y = fanout y1
